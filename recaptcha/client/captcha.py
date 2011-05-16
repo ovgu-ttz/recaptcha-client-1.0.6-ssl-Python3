@@ -102,15 +102,19 @@ def displayhtml(public_key, use_ssl=False, error=None):
 	else:
 		server = API_SERVER
 	
+	html_values = {
+		'ApiServer':  server, 
+		'PublicKey':  public_key, 
+		'ErrorParam': error_param, 
+	}
+	
 	html = 	"""<script type="text/javascript" src="%(ApiServer)s/challenge?k=%(PublicKey)s%(ErrorParam)s"></script>""" \
 			"""<noscript>""" \
 			"""  <iframe src="%(ApiServer)s/noscript?k=%(PublicKey)s%(ErrorParam)s" height="300" width="500" frameborder="0"></iframe><br />""" \
 			"""  <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>""" \
 			"""  <input type='hidden' name='recaptcha_response_field' value='manual_challenge' />""" \
-			"""</noscript>""" % { 	'ApiServer':  server, 
-									'PublicKey':  public_key, 
-									'ErrorParam': error_param,
-									}
+			"""</noscript>""" % html_values
+	
 	return html
 
 
@@ -170,20 +174,23 @@ def submit(recaptcha_challenge_field, recaptcha_response_field, private_key, rem
 	else:
 		server = API_SERVER
 	
-	params 	= urllib.parse.urlencode ({
-				'privatekey': private_key,
-				'remoteip' :  remoteip,
-				'challenge':  recaptcha_challenge_field,
-				'response' :  recaptcha_response_field,
-			})
 	
+	post_data = {
+		'privatekey': private_key,
+		'remoteip' :  remoteip,
+		'challenge':  recaptcha_challenge_field,
+		'response' :  recaptcha_response_field,
+	}
+	
+	params = urllib.parse.urlencode(post_data)
 	params = params.encode('utf-8')
 	
-	request = urllib.request.Request (
+	request = urllib.request.Request(
 				url		= "%s/verify" % server,
 				data 	= params,
 				headers = {"Content-type":"application/x-www-form-urlencoded", "User-agent":"reCAPTCHA Python"},
 			)
+	
 	
 	try:
 		http_response = urllib.request.urlopen(url=request, timeout=timeout_seconds)
@@ -191,9 +198,9 @@ def submit(recaptcha_challenge_field, recaptcha_response_field, private_key, rem
 		error = "urllib.error.URLError exception was raised: %s" % e
 		return RecaptchaResponse(is_valid=False, error_code=error)
 	
+	
 	return_values = http_response.read().splitlines()
 	http_response.close()
-	
 	return_code = return_values[0]
 	
 	if (return_code == b'true'):
