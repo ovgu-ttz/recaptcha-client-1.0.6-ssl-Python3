@@ -5,7 +5,7 @@
 - captcha.py should work fine.
 - mailhide.py does not work.
 
-This is ported directly from Python 2's [recaptcha-client-1.0.6-ssl](http://pypi.python.org/pypi/recaptcha-client "recaptcha-client 1.0.6"), which was ported from [recaptcha-client 1.0.6](http://pypi.python.org/pypi/recaptcha-client "recaptcha-client 1.0.6").
+This is ported directly from Python 2's [recaptcha-client-1.0.6-ssl](http://pypi.python.org/pypi/recaptcha-client "recaptcha-client 1.0.6"), which was forked from [recaptcha-client 1.0.6](http://pypi.python.org/pypi/recaptcha-client "recaptcha-client 1.0.6").
 
 This code falls under its original MIT/X11 license. The author of this fork is not associated or affiliated with reCAPTCHA in any way.
 
