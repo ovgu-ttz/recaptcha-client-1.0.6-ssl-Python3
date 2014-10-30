@@ -1,0 +1,82 @@
+
+# Python Cache Objects
+*.pyc
+*.pyo
+*.pyd
+
+# 2to3
+*.py.bak
+
+# C extensions
+*.so
+
+# Minifies css and js
+*.min.js
+*.min.css
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+src
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Log and pid file
+*.log
+*.pid
+
+# Sqllite database
+*.sqlite
+*.sqlite-journal
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+*.pot
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# IntelliJ IDEA
+.idea
+
+# NoHUP
+nohup.out
+
+# Our config files
+config/*.yaml
+
+# Fonts
+*/static/fonts
+
+# Eclipse settings folder
+/.settings
+
+# npm
+npm-debug.log
+
+# Our less compiled thingies
+*/static/less/*.css
+
+# cores folder of lucene/solr
+*/static/solr/cores
+*/static/solr/solr.xml
